@@ -136,7 +136,7 @@ class Controller_main extends Controller_base {
 				$name = DB::escape($_POST['name']);
 				$surname = DB::escape($_POST['surname']);
 				$login = DB::escape($_POST['login']);
-				$pass = DB::escape($_POST['pass']);
+				$pass = md5($_POST['pass']);
 				$id = Model_user::getIdByReg($_POST['login']);
 				if ($id) {
 					$answer['text']  = 'Такой пользователь уже существует';
