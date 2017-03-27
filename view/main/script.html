@@ -1,0 +1,11 @@
+<!-- <script src="script.js"></script> -->
+<!-- передается список подключаемых js файлов -->
+		<script>
+			var MAIN = "<?=MAIN?>";
+		</script>
+		
+		<?foreach($js as $file):?>
+			<script src="<?=$file?>"></script>
+		<?endforeach?>
+	</body>
+</html>

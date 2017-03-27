@@ -1,0 +1,13 @@
+# кодировка для всего проекта
+adddefaultcharset utf-8
+
+# index-файл по умолчанию
+DirectoryIndex index.php
+
+# правила для переработки полученного запроса в URL
+RewriteEngine On
+
+# если URI не оканчивается на имя index-файла (!-f), то запускаем файл index.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,QSA]

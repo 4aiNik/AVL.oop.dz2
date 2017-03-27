@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?=$title?></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
+	<?foreach($css as $file):?>
+		<link rel="stylesheet" type="text/css" href="<?=$file?>" />
+	<?endforeach?>
+	<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+</head>
+<body>
+
+<!-- передаются подключаемые css файлы и параметр title для страницы -->

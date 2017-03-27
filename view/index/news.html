@@ -1,0 +1,32 @@
+<!-- <?php print_r($data['messages']) ?> -->
+<table border="1">
+    <tr>
+        <th>заголовок</th>
+        <th>дата</th>
+        <th>автор</th>
+        <th>текст</th>
+        <th>теги</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <?foreach($messages as $mess):?>
+    <tr>
+        <td><?=$mess['name']?></td>
+        <td><?=$mess['date']?></td>
+        <td><?=$mess['author']?></td>
+        <td><?=$mess['text']?></td>
+        <td><?=$mess['tags']?></td>
+        <td><form method="POST" action="<?=SUBSERVER?>news/edit/<?=$mess['id']?>/"><input type="submit" value="ред"></form></td>
+        <td><form method="POST" action="<?=SUBSERVER?>news/remove/<?=$mess['id']?>/"><input type="submit" value="X"></form></td>
+    </tr>
+    <?endforeach?>
+</table>
+<form method="POST" action="" id="newsAdd"><input type="submit" value="добавить"></form>
+<div class="formForNews" style="display: none;">
+    <form method="POST" action="">
+        заголовок: <input type="text" id="newsTitle" name="newsTitle"><br>
+        текст: <input type="text" id="newsText" name="newsText"><br>
+        теги: <input type="text" id="newsTags" name="newsTags"><br>
+        <input type="submit" id="newsButton" value="ok">
+    </form>
+</div>
