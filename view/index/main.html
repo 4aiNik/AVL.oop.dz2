@@ -1,18 +1,8 @@
 <?if($user):?>
 <p>ВСЕ ОК</p>
-<form method='POST' action="<?=SUBSERVER?>news/show/">
-	<input type="submit" value="Показать все новости">
-</form>
-<form method='POST' action="<?=SUBSERVER?>logout/">
-	<input type="submit" value="Выйти">
-</form>
+<button><a href="<?=SUBSERVER?>logout/">Выйти</a></button>
 <?else:?>
 <p>Ты КТО?</p>
-<!-- <button><a href="<?=SUBSERVER?>auth/"></a>Авторизация</button> -->
-<form method='POST' action="<?=SUBSERVER?>auth/">
-	<input type="submit" value="Авторизация">
-</form>
-<form method='POST' action="<?=SUBSERVER?>reg/">
-	<input type="submit" value="Регистрация">
-</form>
+<button><a href="<?=SUBSERVER?>auth/">Авторизация</a></button>
+<button><a href="<?=SUBSERVER?>reg/">Регистрация</a></button>
 <?endif?>

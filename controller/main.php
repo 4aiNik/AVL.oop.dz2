@@ -176,10 +176,21 @@ class Controller_main extends Controller_base {
 	}
 
 	private static function logout() {
-		unset($_SESSION['token']);
-		unset($_COOKIE['PHPSESSID']);
-			
-		header('Location:' . MAIN);
-	}
 
+		$mySession = $_COOKIE['PHPSESSID'];
+		$myToken = $_SESSION['token'];
+
+		$data['table'] = 'user';
+		$data['values'] = ['user_session' => NULL, 'user_token' => NULL];
+		$data['where'] = ['user_session' => $mySession, 'user_token' => $myToken];
+
+		if (DB::update($data)) {
+			unset($_SESSION['token']);
+			unset($_COOKIE['PHPSESSID']);
+			
+			header('Location:' . MAIN);
+		} else {
+			die('error 404');
+		}
+	}
 }

@@ -85,7 +85,7 @@ class DB {
 				$query = trim($query, ',');
 				$query.= ' WHERE 1 ';
 				foreach ($where as $col => $val) {
-					$query.= ' AND ' . DB::escape($col) . ' = ' . DB::escape($val);
+					$query.= ' AND ' . DB::escape($col) . ' = "' . DB::escape($val) . '"';
 				}
 				mysqli_query($db->connect, $query);
 				if (mysqli_errno($db->connect)) {
@@ -118,26 +118,19 @@ class DB {
 		}
 	}
 
-	static function add($arr = array()) {
-		//TODO!!!!!!!!!!!!!!!
+	static function remove($arr = array()) {
 		$db = self::connect();
 
 		extract($arr, EXTR_OVERWRITE);
 
-		if (!isset($table) OR !isset($values)) {
+		if (!isset($table) OR !isset($where)) {
 			return false;
-		}else {
-			$query = 'INSERT INTO ' . DB::escape($table) . ' (';
-			foreach($values as $column => $value) {
-				$query.= DB::escape($column) . ', ';
+		} else {
+			$query = 'DELETE FROM ' . DB::escape($table);
+			$query.= ' WHERE 1 ';
+			foreach ($where as $col => $val) {
+				$query.= ' AND ' . DB::escape($col) . ' = ' . DB::escape($val);
 			}
-			$query = trim($query, ',');
-			$query.= ') VALUES (';
-			foreach($values as $column => $value) {
-				$query.= '"' . DB::escape($value) . '", ';
-			}
-			$query = trim($query, ',');
-			$query.= ')';
 			mysqli_query($db->connect, $query);
 			if (mysqli_errno($db->connect)) {
 				return false;
@@ -146,6 +139,7 @@ class DB {
 			}
 		}
 	}
+
 	static function escape($str) {
 		$db = self::connect();
 		return $db->connect ? mysqli_real_escape_string($db->connect, $str) : false;

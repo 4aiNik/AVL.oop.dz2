@@ -6,8 +6,9 @@
         <th>автор</th>
         <th>текст</th>
         <th>теги</th>
-        <th></th>
-        <th></th>
+<?if($user):?>
+        <th colspan="2">управление</th>
+<?endif?>
     </tr>
     <?foreach($messages as $mess):?>
     <tr>
@@ -16,17 +17,24 @@
         <td><?=$mess['author']?></td>
         <td><?=$mess['text']?></td>
         <td><?=$mess['tags']?></td>
-        <td><form method="POST" action="<?=SUBSERVER?>news/edit/<?=$mess['id']?>/"><input type="submit" value="ред"></form></td>
-        <td><form method="POST" action="<?=SUBSERVER?>news/remove/<?=$mess['id']?>/"><input type="submit" value="X"></form></td>
+<?if($user['name'] == $mess['author'] || $user['mode'] == 'admin'):?>
+        <!-- <td><button class="newsEdit"><a href="<?=SUBSERVER?>news/edit/<?=$mess['id']?>/">ред</a></button></td> -->
+        <td><button class="newsEdit" data-item=<?=$mess['id']?>><a href="">ред</a></button></td>
+        <td><button><a href="<?=SUBSERVER?>news/remove/<?=$mess['id']?>/">X</a></button></td>
+        <!-- <td><button class="newsRemove" data-item=<?=$mess['id']?>><a href="">X</a></button></td> -->
+<?endif?>
     </tr>
+
     <?endforeach?>
 </table>
-<form method="POST" action="" id="newsAdd"><input type="submit" value="добавить"></form>
+<?if($user):?>
+<button><a href="" id="newsAdd">добавить</a></button>
 <div class="formForNews" style="display: none;">
     <form method="POST" action="">
         заголовок: <input type="text" id="newsTitle" name="newsTitle"><br>
         текст: <input type="text" id="newsText" name="newsText"><br>
         теги: <input type="text" id="newsTags" name="newsTags"><br>
-        <input type="submit" id="newsButton" value="ok">
+        <!-- <input type="submit" id="newsButton" value="ok"> -->
     </form>
 </div>
+<?endif?>
