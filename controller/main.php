@@ -35,18 +35,6 @@ class Controller_main extends Controller_base {
 		}
 	}
 
-	// private static function index() {
-	// 	// echo 'OK';
-	// 	// self::$css[] = CSS . 'bootstrap.min.css';
-	// 	self::$title = 'Главная';
-	// 	self::$main = [
-	// 		'index/main' => [
-	// 			'user' => self::$user,
-	// 		],
-	// 	];
-	// }
-
-
 	protected static function index() {
 		// self::$css[] = CSS . 'bootstrap.min.css';
 		self::$title = 'Главная';

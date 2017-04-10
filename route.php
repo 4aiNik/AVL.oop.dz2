@@ -1,5 +1,5 @@
 <?php
-class Route {
+class Route extends Controller_base {
 	//белые списки допустимых запросов к системе
 	public static $patterns = array(
 		'Controller_main' => [
@@ -24,8 +24,9 @@ class Route {
 			'#^' . SUBSERVER . 'news/(edit)/([0-9]+)/$#',
 			'#^' . SUBSERVER . 'news/(remove)/([0-9]+)/$#',
 		],
-		'Error' => [
-			'#^.*$#'
+		'Controller_error' => [
+			'#^' . SUBSERVER . '(error)/$#',
+			'#^.*$#',
 		],
 	);
 	public static function start($url) {
@@ -53,7 +54,7 @@ class Route {
 		// print_r($id);
 
 		$path = str_replace('_', '/', $class) . '.php';
-		if ($class != 'Error'AND file_exists($path)) {
+		if (file_exists($path)) {
 			include_once $path;
 			$class::main($method, $id);
 			// if ($id) {
@@ -61,9 +62,12 @@ class Route {
 			// } else {
 			// 	$class::$method();
 			// }
-		} else {
-			die('ERRORRRRRRRRRRR');
-		}
+		} 
+			//else {
+		// 	include_once $path;
+		// 	$class::main($method, $id); 
+
+		// }
 	// 	//контроллер и действие по умолчанию
 	// 	$controller_name = 'Controller_main';
 	// 	$action_name = 'index';

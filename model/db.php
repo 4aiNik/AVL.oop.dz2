@@ -6,6 +6,9 @@ class DB {
 	private function __construct() {
 		$this->connect = mysqli_connect('localhost', 'root', '', 'oop');
 		mysqli_set_charset($this->connect, 'utf8');
+		if (mysqli_connect_errno()) {
+			header('Location: http://localhost/myoop4/error/');
+		}
 	}
 
 	static public function connect() {

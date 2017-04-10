@@ -51,30 +51,4 @@
 				self::render('main/script', ['js' => self::$js]);
 			}
 		}
-		
-		protected static function showError(){
-			if(IS_AJAX) {
-				$answer['error'] = 1;
-				$answer['type'] = 'warning';
-				$answer['text'] = 'У Вас не достаточно прав для работы с этим разделом!';
-				echo json_encode($answer);
-			}
-			else {
-				Controller_error::main('403');
-				self::showPage();
-			}
-		}
-		
-		protected static function showNotFound(){
-			if(IS_AJAX) {
-				$answer['error'] = 1;
-				$answer['type'] = 'warning';
-				$answer['text'] = 'Указанной страницы не существует';
-				echo json_encode($answer);
-			}
-			else {
-				Controller_error::main('404');
-				self::showPage();
-			}
-		}
 	}
