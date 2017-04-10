@@ -22,7 +22,7 @@ $(document).ready(function(){
 			if (newsTitle.length || newsText.length || newsTags.length) {
 				$.post(MAIN + 'news/add/', {newsTitle: newsTitle, newsText: newsText, newsTags: newsTags}, function(data){
 					// console.log(data['error'] + ' ' + data['text'] + ' ' + data['type']);
-					location.reload();
+					//location.reload();
 				}, 'json');
 			} else {
 				alert('поля пустые');
@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 				$.post(MAIN + 'news/edit/' + newsId + '/', {newTitle: newTitle, newText: newText, newTags: newTags}, function(data){
 					// console.log(data['error'] + ' ' + data['text'] + ' ' + data['type']);
-					location.reload();
+					//location.reload();
 				}, 'json');
 			} else {
 				alert('поля пустые');
